@@ -64,9 +64,20 @@
         </div>
     </footer>
     <script>
-        function viewMarksheet() {
-            window.open('public/marksheet.pdf', '_blank');
+    function viewMarksheet() {
+        const examRollNo = document.querySelector('input[name="exam_roll_no"]').value; // Get the exam roll number
+        if (examRollNo === "") {
+            alert("Please enter a valid Exam Roll No.");
+            return;
         }
-    </script>
+        const link = document.createElement('a');
+        link.href = 'public/marksheet.pdf';
+        link.download = `${examRollNo}_marksheet.pdf`; // Set the filename to the exam roll number
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
 </body>
 </html>
